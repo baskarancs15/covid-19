@@ -1,0 +1,91 @@
+<div
+  style="margin: auto;
+width: 50%;
+padding: 10px;"
+>
+  <h1 style="text-align: center;">COVID-19 LIVE NOW</h1>
+  <br />
+  <div class="ui grid container">
+    <div class="five wide column">
+      <div
+        class="uk-card uk-card-default uk-card-body"
+        style="text-align: center;background-color: #364f6b;"
+      >
+        <h3 class="uk-card-title" style="color: white;">Cases</h3>
+        <p style="color: white;">
+          {{ allcases?.cases }}
+        </p>
+      </div>
+    </div>
+    <div class="five wide column">
+      <div
+        class="uk-card uk-card-default uk-card-body"
+        style="text-align: center;background-color: #d72323;"
+      >
+        <h3 class="uk-card-title" style="color: white;">Deaths</h3>
+        <p style="color: white;">
+          {{ allcases?.deaths }}
+        </p>
+      </div>
+    </div>
+    <div class="five wide column">
+      <div
+        class="uk-card uk-card-default uk-card-body"
+        style="text-align: center;background-color:#56ad6a"
+      >
+        <h3 class="uk-card-title" style="color: white;">Recovered</h3>
+        <p style="color: white;">
+          {{ allcases?.recovered }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<form
+  style="margin: auto;
+width: 20%;"
+>
+  <span class="uk-label">Search for Countries</span>
+  <br />
+  <div class="uk-margin">
+    <input
+      class="uk-input uk-form-width-large"
+      type="text"
+      name="countryName"
+      [(ngModel)]="countryName"
+      placeholder="Search..."
+    />
+  </div>
+</form>
+<br />
+<div class="ui stackable four column grid">
+  <div
+    class="column"
+    *ngFor="let country of countrycases | country: countryName"
+  >
+    <div class="uk-child-width-1-1@m" uk-grid>
+      <div>
+        <div class="uk-card uk-card-default">
+          <div class="uk-card-media-top">
+            <img
+              style="width: 400px;height:200px"
+              src="{{ country.countryInfo.flag }}"
+              alt=""
+            />
+          </div>
+          <div class="uk-card-body" style="text-align: center;">
+            <h3 class="uk-card-title">{{ country.country }}</h3>
+            <li>Cases:&nbsp;{{ country.cases }}</li>
+            <li>Deaths:&nbsp;{{ country.deaths }}</li>
+            <li>Recovered:&nbsp;{{ country.recovered }}</li>
+            <li>Today's Cases:&nbsp;{{ country.todayCases }}</li>
+            <li>Today's Death:&nbsp;{{ country.todayDeaths }}</li>
+            <li>Active:&nbsp;{{ country.active }}</li>
+            <li>Critical:&nbsp;{{ country.critical }}</li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
